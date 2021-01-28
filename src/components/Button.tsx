@@ -2,25 +2,25 @@ import { FC } from 'react';
 import styled from 'styled-components/native';
 
 type Props = {
-  buttonColor?: string;
   textColor?: string;
   buttonRadius?: string;
   backgroundColor?: string;
-  size?: string;
+  textSize?: string;
 };
 
-export const Button: FC<Props> = ({
-  backgroundColor,
-  buttonColor,
-  buttonRadius,
-  children,
-  size,
-  textColor,
+export const Button: FC<Partial<Props>> = ({
+  backgroundColor = '#333',
+  buttonRadius = '10px',
+  textSize = '14px',
+  textColor = '#fff',
 }) => {
   return (
     <Container>
-      <StyledButton>
-        <ButtonText size={size} textColor={textColor}>
+      <StyledButton
+        backgroundColor={backgroundColor}
+        buttonRadius={buttonRadius}
+      >
+        <ButtonText textSize={textSize} textColor={textColor}>
           Button
         </ButtonText>
       </StyledButton>
@@ -30,6 +30,22 @@ export const Button: FC<Props> = ({
 
 const Container = styled.View``;
 
-const StyledButton = styled.TouchableOpacity``;
+type ButtonProps = {
+  backgroundColor: string;
+  buttonRadius: string;
+};
 
-const ButtonText = styled.Text``;
+const StyledButton = styled.TouchableOpacity<ButtonProps>`
+  background: ${({ backgroundColor }) => backgroundColor};
+  border-radius: ${({ buttonRadius }) => buttonRadius};
+`;
+
+type ButtonTextProps = {
+  textSize: string;
+  textColor: string;
+};
+
+const ButtonText = styled.Text<ButtonTextProps>`
+  font-size: ${({ textSize }) => textSize};
+  color: ${({ textColor }) => textColor};
+`;
