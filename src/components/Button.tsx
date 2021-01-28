@@ -1,10 +1,28 @@
+import { FC } from 'react';
 import styled from 'styled-components/native';
 
-export const Button = () => {
+type Props = {
+  buttonColor?: string;
+  textColor?: string;
+  buttonRadius?: string;
+  backgroundColor?: string;
+  size?: string;
+};
+
+export const Button: FC<Props> = ({
+  backgroundColor,
+  buttonColor,
+  buttonRadius,
+  children,
+  size,
+  textColor,
+}) => {
   return (
     <Container>
       <StyledButton>
-        <ButtonText>Button</ButtonText>
+        <ButtonText size={size} textColor={textColor}>
+          Button
+        </ButtonText>
       </StyledButton>
     </Container>
   );
