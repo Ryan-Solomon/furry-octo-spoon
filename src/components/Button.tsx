@@ -3,6 +3,7 @@ import { FC } from 'react';
 import styled from 'styled-components/native';
 
 type Props = {
+  onPress: () => void;
   textColor: string;
   buttonRadius: string;
   borderColor: string;
@@ -22,10 +23,12 @@ export const Button: FC<Partial<Props>> = ({
   text = 'button',
   height = '50px',
   width = '50px',
+  onPress,
 }) => {
   return (
     <Container>
       <StyledButton
+        onPress={onPress}
         height={height}
         width={width}
         backgroundColor={backgroundColor}

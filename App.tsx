@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { Button } from './src/components/Button';
 
 export default function App() {
+  const [inputText, setInputText] = useState('');
+  const [focusSubject, setFocusSubject] = useState('');
   return (
     <Container>
-      <Title>What would you like to focus on?</Title>
-      <InputContainer>
-        <TextInput />
-        <Button textSize='24px' text='+' buttonRadius='50px' />
-      </InputContainer>
+      {focusSubject ? (
+        <Title>{focusSubject}</Title>
+      ) : (
+        <>
+          <Title>What would you like to focus on?</Title>
+          <InputContainer>
+            <TextInput
+              value={inputText}
+              onChangeText={(text) => setInputText(text)}
+            />
+            <Button
+              onPress={() => setFocusSubject(inputText)}
+              textSize='24px'
+              text='+'
+              buttonRadius='50px'
+            />
+          </InputContainer>
+        </>
+      )}
     </Container>
   );
 }
@@ -28,6 +44,7 @@ const Title = styled.Text`
 
 const InputContainer = styled.View`
   flex-direction: row;
+  align-items: center;
 `;
 
 const TextInput = styled.TextInput`
