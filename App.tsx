@@ -8,7 +8,16 @@ export default function App() {
   return (
     <Container>
       {focusSubject ? (
-        <Title>{focusSubject}</Title>
+        <>
+          <Title>{focusSubject}</Title>
+          <Button
+            onPress={() => setFocusSubject('')}
+            textSize='24px'
+            text='Focus on something else'
+            buttonRadius='50px'
+            width='auto'
+          />
+        </>
       ) : (
         <>
           <Title>What would you like to focus on?</Title>
@@ -18,7 +27,10 @@ export default function App() {
               onChangeText={(text) => setInputText(text)}
             />
             <Button
-              onPress={() => setFocusSubject(inputText)}
+              onPress={() => {
+                setFocusSubject(inputText);
+                setInputText('');
+              }}
               textSize='24px'
               text='+'
               buttonRadius='50px'
@@ -52,4 +64,5 @@ const TextInput = styled.TextInput`
   width: 80%;
   background: #fff;
   margin-right: 10px;
+  padding: 10px;
 `;
